@@ -5,24 +5,12 @@ import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 
 import {useGeceModuAc} from "./hooks/geceModuAc";
-import { useLocalStorage } from "./hooks/localStorageKullan";
 
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
 
   const [geceModu, setGeceModu] = useGeceModuAc(false);
-  const [local, hUpdate] = useLocalStorage("geceModu", geceModu);
-
-    useEffect(() => {
-
-        hUpdate({darkMode: geceModu});
-
-    }, [geceModu]);
-
-    useEffect(() => {
-        console.log(local);
-    }, [local]);
 
 
   useEffect(() => {

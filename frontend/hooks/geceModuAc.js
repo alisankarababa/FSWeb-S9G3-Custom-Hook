@@ -1,13 +1,18 @@
 import { useState } from "react";
+import { useLocalStorage } from "./localStorageKullan";
+
 
 
 export function useGeceModuAc(modeInitial) {
 
-    const [mode, setMode] = useState(modeInitial);
+    const [storedMode, updateStoredMode] = useLocalStorage("nightMode", modeInitial);
+    
+    const [mode, setMode] = useState(storedMode);
 
-    function hSetMode(modeNew) {
+    function updateMode(modeNew) {
+        updateStoredMode(modeNew);
         setMode(modeNew);
     }
 
-    return [mode, hSetMode];
+    return [mode, updateMode];
 }

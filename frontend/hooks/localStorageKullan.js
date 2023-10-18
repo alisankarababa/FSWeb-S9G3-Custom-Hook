@@ -13,11 +13,11 @@ export function useLocalStorage(key, value) {
         return value;
     });
 
-    function hUpdate(valueNew) {
+    function updateData(valueNew) {
 
         localStorage.setItem(key, JSON.stringify(valueNew));
         setData(valueNew);
     }
 
-    return [data, hUpdate];
+    return [data, updateData];
 }
