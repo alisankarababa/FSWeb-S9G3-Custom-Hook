@@ -5,11 +5,28 @@ import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 
 import {useGeceModuAc} from "./hooks/geceModuAc";
+import { useLocalStorage } from "./hooks/localStorageKullan";
+
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
 
+  const [local, hUpdate] = useLocalStorage("geceModu", "value2");
   const [geceModu, setGeceModu] = useGeceModuAc(false);
+
+    useEffect(() => {
+
+        if(geceModu)
+            hUpdate("açık");
+        else
+            hUpdate("kapalı");
+
+    }, [geceModu]);
+
+    useEffect(() => {
+        console.log(local);
+    }, [local]);
+
 
   useEffect(() => {
     axios
