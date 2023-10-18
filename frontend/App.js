@@ -11,15 +11,12 @@ import { useLocalStorage } from "./hooks/localStorageKullan";
 const App = () => {
   const [coinData, setCoinData] = useState([]);
 
-  const [local, hUpdate] = useLocalStorage("geceModu", "value2");
   const [geceModu, setGeceModu] = useGeceModuAc(false);
+  const [local, hUpdate] = useLocalStorage("geceModu", geceModu);
 
     useEffect(() => {
 
-        if(geceModu)
-            hUpdate("açık");
-        else
-            hUpdate("kapalı");
+        hUpdate({darkMode: geceModu});
 
     }, [geceModu]);
 
